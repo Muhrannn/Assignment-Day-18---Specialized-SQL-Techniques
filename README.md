@@ -50,11 +50,14 @@ FROM STUDENTS
 ORDER BY GRADE DESC, NAME ASC
 ```
 
+Penjelasan : Untuk di Query disini yang fungsi sangat di lihat adalah pada bagian grade untuk nilai dan disini saya menggunakan CASE untuk mendapatkan grade di masing2 student
+
 ### Hasil
 
 ![Hasil Query No 1](Hasil%20Query%20No%201.png)
 
 ---
+
 
 ## 2. Weather Observation Station 18
 
@@ -72,6 +75,8 @@ SELECT
     ) AS LOCATION
 FROM STATION;
 ```
+
+Penjelasan Query: Untuk di Query disini mencari ManHattan distance dimana rumusnya adalah (max(lat_n) - min(lat_n) + max(long_w)-min(long_w))
 
 ### Hasil
 
@@ -99,6 +104,8 @@ HAVING COUNT(DISTINCT s.challenge_id) > 1
 ORDER BY COUNT(DISTINCT s.challenge_id) DESC,
          h.hacker_id ASC;
 ```
+
+Penjelasan Query: Untuk di Query disini melihat top skor per challenge. Disini kita yang pasti join 3 table karena ingin mengambil nilai lalu disini ada where s.score = d.score dimana d.score merupakan nilai max scorenya makanya dilakukan perbandingan harus sama dengan max score si submission per hackernya. Dan ambil competitor yang mendapatkan nilai high score di berbeda submission dan urutkan
 
 ### Hasil
 
@@ -139,6 +146,8 @@ WHERE wp.is_evil = 0
 ORDER BY w.power DESC, wp.age DESC;
 ```
 
+Penjelasan Query: Untuk Query disini ingin mengambil nilai kombinasi termurah power dan age tanpa mengamil wand evil. Disini yang pasti saya buat CTE untuk mengambil nilai termurah lalu akan dijoinkan CTE dengan table lainnya dan akan mencari yang non-evil
+
 ### Hasil
 
 ![Hasil Query No 4](Hasil%20Query%20No%204.png)
@@ -172,6 +181,12 @@ HAVING SUM(A.max_score) > 0
 ORDER BY total_score DESC, h.hacker_id ASC;
 ```
 
+Penjelasan Query: Untuk Query disini ingin mencari leaderboard dari contestan dimana mencari nilai max dari setiap submission. Pertama membuat CTE untuk max_score per submission dan id berapa yang punya nilai terbesar itu. Lalu akan dilakukan SUM untuk pemain yang memiliki max nilai di setiap submission dan di urutkan terbesar nilainya.
+
 ### Hasil
 
 ![Hasil Query No 5](Hasil%20Query%20No%205.png)
+
+## Jawaban Reflection Question
+1. Untuk membangun CTE, SubQuery, dan Window Function kita lihat dlu data apa yang kita ingin tampilkan. Kalau Window Function jika saya ingin melihat rank terbesar atau ingin melihat laba dari per day. Jika CTE dan SubQuery itu jika saya ingin melakukan count dlu baru karena biasanya count itu harus ada group by tetapi group by ini ada beberapa yang ga harus di group by gitu jadi misal hacker_id, tempat, sum(nilai) nah disini saya mau group by hacker_id aja tetapi karena ada sum di group by harus hacker_id dan tempat. Untuk SubQuery itu saya jarang pake karena memang sebetulnya sama aja dengan CTE.
+2. Yang paling dibutuhkan adalah bagian WHERE, GROUP BY, JOIN karena disini menerapkan filtering, agregate, dan penggabungan table. Untuk SQL lanjutan yang paling dibutuhkan adalah CASE WHEN karena biasanya kita ingin mengelompokan sesuatu kelas, lalu ada agregate ini sudah pasti karena setiap bisnis pasti tidak jauh dengan hitung2an. 
